@@ -4,6 +4,15 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$ROOT/arrc"
 
+# Avoid starting a second copy: it would fight the running J server for the
+# dashboard and local browser-bridge ports, then print an alarming EADDRINUSE.
+if command -v curl >/dev/null && curl -fsS --max-time 2 http://127.0.0.1:3710/health >/dev/null 2>&1; then
+  echo "J is already running in another terminal."
+  echo "Dashboard: http://localhost:3710"
+  echo "Use that existing terminal, or press Ctrl+C there before starting J again."
+  exit 0
+fi
+
 if ! command -v node >/dev/null; then
   echo "Node.js 20 or later is required. Install it, then run this again."
   exit 1

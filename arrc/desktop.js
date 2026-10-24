@@ -102,7 +102,15 @@ export async function windowList(){
 }
 export async function windowApply(id,op){await command('gdbus',['call','--session','--dest','org.gnome.Shell','--object-path','/org/arrc/Windows','--method','org.arrc.Windows.Apply',String(id),op]);return `Window ${op} completed.`;}
 export async function terminalType(text){
-  const response=await command('gdbus',['call','--session','--dest','org.gnome.Shell','--object-path','/org/arrc/Windows','--method','org.arrc.Windows.Terminal',text]);
+  let response;
+  try{
+    response=await command('gdbus',['call','--session','--dest','org.gnome.Shell','--object-path','/org/arrc/Windows','--method','org.arrc.Windows.Terminal',text]);
+  }catch(error){
+    if(/UnknownMethod|\.Terminal|org\.arrc\.Windows/i.test(String(error.message))){
+      throw new Error('Terminal typing needs one Ubuntu log out and sign-in to activate the updated J Desktop Bridge.');
+    }
+    throw error;
+  }
   const value=response.match(/^\('(.*)',\)$/)?.[1] ?? response;
   if(!/Typed and ran/.test(value))throw new Error(value.replace(/\\'/g,"'"));
   return value;

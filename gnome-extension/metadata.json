@@ -1,1 +1,1 @@
-{"uuid":"j-window-bridge@arrc.local","name":"J Window Bridge","description":"Local session-bus window control for ARRC. No network listener or arbitrary code execution.","shell-version":["46"],"version":1}
+{"uuid":"j-desktop-bridge@arrc.local","name":"J Desktop Bridge","description":"Local session-bus window and approved terminal control for ARRC. No network listener or arbitrary code execution.","shell-version":["46"],"version":1}

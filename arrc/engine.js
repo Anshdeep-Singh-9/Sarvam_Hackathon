@@ -84,8 +84,8 @@ export function createEngine(root){
       const [bin,args]=terminalPlan(a.text);
       const quote=s=>/^[A-Za-z0-9_./:=+%-]+$/.test(s)?s:`'${s.replace(/'/g,"'\\''")}'`;
       const line=[bin,...args].map(quote).join(' ');
-      const output=await runner.read(a.text,ctx.project||path.dirname(root),ctx);
       await terminalType(line);
+      const output=await runner.read(a.text,ctx.project||path.dirname(root),ctx);
       return `${output.slice(0,500)} ${ctx.project ? `Typed ${line} into the focused terminal; it runs in that terminal's own folder.` : `Typed ${line} into the focused terminal.`}`;
     },
     desktop_action:async({input,session})=>{

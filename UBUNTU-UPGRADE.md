@@ -103,6 +103,7 @@ No extra Sarvam HTTP tools are needed.
 | `file_action` | find, open, folder, recent, content, info, reveal, path (copies path) |
 | `project_action` | list, select, open, terminal, run, status, stop, readme, git_pull |
 | `terminal_safe` | pwd, ls, tree, whoami, date, uptime, df, du, free, ps, ss, lsof, git status, git log, git branch, git diff, docker ps |
+| `terminal_action` | open a visible terminal, or type and run an approved read-only terminal command in the focused GNOME Terminal |
 | `desktop_action` | screenshot, screenshot_status |
 | `confirm_action` / `cancel_action` | approve exact pending operation by its ID / cancel |
 
@@ -165,19 +166,16 @@ sudo apt install playerctl wl-clipboard brightnessctl tree lsof python3-gi
 sudo apt install wmctrl xdotool xclip gnome-screenshot
 ```
 
-GNOME Window Bridge is installed as `j-window-bridge@arrc.local`. Check/enable it with:
-
-On this laptop it is now **ACTIVE**. Live window listing and focus-current were verified.
+GNOME Desktop Bridge is installed as `j-desktop-bridge@arrc.local`. Check/enable it with:
 
 ```bash
-gnome-extensions info j-window-bridge@arrc.local
-gnome-extensions enable j-window-bridge@arrc.local
+gnome-extensions info j-desktop-bridge@arrc.local
+gnome-extensions enable j-desktop-bridge@arrc.local
 ```
 
 It supports GNOME 46, uses only a local session-bus object, and has no network listener or
-arbitrary JavaScript evaluator. If installing on another machine, pack/install the included
-directory with gnome-extensions. New installs may require logging out/in on Wayland before
-GNOME discovers them. Do not restart GNOME Shell inside an active Wayland session.
+arbitrary JavaScript evaluator. The updated terminal typing bridge requires one normal Ubuntu
+log-out/sign-in before GNOME loads it. Do not restart GNOME Shell inside an active Wayland session.
 Reference: https://gjs.guide/extensions/development/debugging.html
 
 Current limits (do not mistake these for completed features):
