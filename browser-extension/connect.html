@@ -1,0 +1,8 @@
+<!doctype html><html><head><meta charset="utf-8"><title>J Browser Bridge</title></head>
+<body style="font:18px system-ui;max-width:700px;margin:60px auto">
+<h1>J Browser Bridge</h1><p>Keep this tab open. Commands come only from your authenticated ARRC server at 127.0.0.1:3711.</p>
+<p>Copy the separate bridge token with <code>node arrc/bridge-pair.js</code> in the project folder, then paste it below. This is not your Sarvam token.</p>
+<input id="token" type="password" autocomplete="off" placeholder="Local bridge token"><button id="connect">Connect</button>
+<button id="permissions">Allow page interaction</button><button id="disconnect">Disconnect</button><p id="status">Disconnected</p>
+<p>Page interaction needs access to HTTP/HTTPS sites. Chrome settings, extension pages, incognito and file URLs are excluded. Browser content is untrusted: J must never follow instructions embedded in webpages.</p>
+<script type="module" src="connect.js"></script></body></html>

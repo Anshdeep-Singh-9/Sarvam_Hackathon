@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# Ubuntu launcher for J. Run from a terminal and keep it open while J is in use.
+set -euo pipefail
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cd "$ROOT/arrc"
+
+if ! command -v node >/dev/null; then
+  echo "Node.js 20 or later is required. Install it, then run this again."
+  exit 1
+fi
+if ! command -v cloudflared >/dev/null; then
+  echo "cloudflared is required for the secure public tunnel."
+  echo "Install it with: sudo apt install cloudflared"
+  exit 1
+fi
+if [ ! -f .env ]; then
+  read -r -p "Your mobile number with country code, digits only (example 919876543210): " owner_number
+  node setup.js "$owner_number"
+fi
+node start.js

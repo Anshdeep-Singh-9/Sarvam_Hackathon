@@ -1,0 +1,12 @@
+{
+  "manifest_version": 3,
+  "name": "J Browser Bridge",
+  "version": "1.0.0",
+  "description": "Connect your existing Chrome tabs to your local ARRC server.",
+  "permissions": ["tabs", "scripting", "storage", "downloads", "activeTab"],
+  "host_permissions": ["http://127.0.0.1/*"],
+  "optional_host_permissions": ["<all_urls>"],
+  "action": {"default_title": "Connect J Browser Bridge"},
+  "background": {"service_worker": "background.js"},
+  "content_security_policy": {"extension_pages": "script-src 'self'; object-src 'none'; connect-src http://127.0.0.1:3711"}
+}
